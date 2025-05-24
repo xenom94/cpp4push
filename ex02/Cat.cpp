@@ -1,22 +1,35 @@
-# include "Cat.hpp"
+#include "Cat.hpp"
 
-Cat::Cat() : Animal(){
-    this->type = "Cat";
+Cat::Cat() {
+    std::cout << "Cat default constructor called" << std::endl;
+    type = "Cat";
+    brain = new Brain();
 }
 
-Cat::~Cat(){
-    std::cout << "Cat is dead" << std::endl;
+Cat::Cat(const Cat& other) : AAnimal(other) {
+    std::cout << "Cat copy constructor called" << std::endl;
+    type = other.type;
+	brain = new Brain(*other.brain);
 }
 
-Cat::Cat(Cat const &obj):Animal(obj){
-
-}
-
-Cat& Cat::operator=(Cat const &obj){
-    this->type = obj.getType();
+Cat& Cat::operator=(const Cat& other) {
+    std::cout << "Cat copy assignment operator called" << std::endl;
+    if (this != &other) {
+		type = other.type;
+		*brain = *other.brain;
+	}
     return *this;
 }
 
-void Cat::makeSound() const{
-    std::cout <<"Miao"<< std::endl;
+Cat::~Cat() {
+    std::cout << "Cat destructor called" << std::endl;
+    delete brain;
+}
+
+std::string Cat::getType() const {
+    return type;
+}
+
+void Cat::makeSound() const {
+    std::cout << "Meow!" << std::endl;
 }

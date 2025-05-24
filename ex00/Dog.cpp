@@ -1,22 +1,29 @@
-# include "Dog.hpp"
+#include "Dog.hpp"
 
-Dog::Dog() : Animal(){
-    this->type = "Dog";
+Dog::Dog() {
+	std::cout << "Dog default constructor called" << std::endl;
+	type = "Dog";
 }
 
-Dog::~Dog(){
-    std::cout << "Dog is dead" << std::endl;
+Dog::Dog(const Dog& other) : Animal(other) {
+	std::cout << "Dog copy constructor called" << std::endl;
 }
 
-Dog::Dog(Dog const& obj):Animal(obj){
-
+Dog& Dog::operator=(const Dog& other) {
+	std::cout << "Dog copy assignment operator called" << std::endl;
+	if (this != &other)
+		type = other.type;
+	return *this;
 }
 
-Dog& Dog::operator=(Dog const &obj){
-    this->type = obj.getType();
-    return *this;
+Dog::~Dog() {
+	std::cout << "Dog destructor called" << std::endl;
 }
 
-void Dog::makeSound() const{
-    std::cout << "Haw Haw"<< std::endl;
+std::string Dog::getType() const {
+	return type;
+}
+
+void Dog::makeSound() const {
+	std::cout << "Woof!" << std::endl;
 }

@@ -1,30 +1,30 @@
-# include "Animal.hpp"
+#include "Animal.hpp"
 
-Animal::Animal(){
-
+Animal::Animal() {
+	std::cout << "Animal default constructor called" << std::endl;
+	type = "Unknown animal";
 }
 
-Animal::~Animal(){
-    std::cout<< "Animal is dead "<<std::endl;
+Animal::Animal(const Animal& other) {
+	std::cout << "Animal copy constructor called" << std::endl;
+	*this = other;
 }
 
-Animal& Animal::operator=(const Animal &obj){
-    this->type = obj.type;
-    return *this;
+Animal& Animal::operator=(const Animal& other) {
+	std::cout << "Animal copy assignment operator called" << std::endl;
+	if (this != &other)
+		type = other.type;
+	return *this;
 }
 
-Animal::Animal(Animal const& obj){
-    *this = obj;
+Animal::~Animal() {
+	std::cout << "Animal destructor called" << std::endl;
 }
 
 std::string Animal::getType() const {
-    return type;
+	return type;
 }
 
-void Animal::setType(const std::string& newType) {
-    type = newType;
-}
-
-void Animal::makeSound() const{
-    std::cout <<"Animal sound "<<std::endl;
+void Animal::makeSound() const {
+	std::cout << "* NO SOUND *" << std::endl;
 }

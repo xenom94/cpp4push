@@ -1,30 +1,36 @@
-# include "Dog.hpp"
-# include "Cat.hpp"
-# include "WrongCat.hpp"
+#include "Cat.hpp"
+#include "Dog.hpp"
+#include "WrongCat.hpp"
+
 
 int main()
 {
-    const Animal* meta = new Animal();
-    const Animal* j = new Dog();
-    const Animal* i = new Cat();
-    const WrongAnimal* Wrongmeta = new WrongAnimal();
-    // const WrongAnimal* Wrongj = new Dog();
-    const WrongAnimal* Wrongi = new WrongCat();
-    const Dog *doggy = new Dog();
-    std::cout << j->getType() << " " << std::endl;
-    std::cout << i->getType() << " " << std::endl;
-    std::cout << Wrongmeta->getType() << " " << std::endl;
-    std::cout << Wrongi->getType() << " " << std::endl;
-    i->makeSound(); //will output the cat sound!
-    j->makeSound();
-    Wrongmeta->makeSound(); //will output the cat sound!
-    Wrongi->makeSound();
-    doggy->makeSound();
-    meta->makeSound();
-    delete meta;
-    delete i;
-    delete j;
-    delete Wrongmeta;
-    delete Wrongi;
-    return 0;
+	std::cout << "-------------------------------------------------------" << std::endl;
+	std::cout << "--- Animal test with virtual member function ---" << std::endl;
+	std::cout << "-------------------------------------------------------" << std::endl;
+	const Animal* meta = new Animal();
+	const Animal* j = new Dog();
+	const Animal* i = new Cat();
+	std::cout << j->getType() << " says ";
+	j->makeSound(); // will output the cat sound!
+	std::cout << i->getType() << " says ";
+	i->makeSound();
+	std::cout << meta->getType() << " says ";
+	meta->makeSound();
+
+	delete i;
+	delete j;
+	delete meta;
+
+	std::cout << "-------------------------------------------------------" << std::endl;
+
+	std::cout << "--- wrong animal test (non virtual member function) ---" << std::endl;
+	std::cout << "-------------------------------------------------------" << std::endl;
+	const WrongAnimal* wrong = new WrongCat();
+	std::cout << wrong->getType() << " says ";
+	wrong->makeSound();
+	delete wrong;
+	std::cout << "-------------------------------------------------------" << std::endl;
+
+	return 0;
 }

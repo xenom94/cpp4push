@@ -1,31 +1,45 @@
-# include "Dog.hpp"
-# include "Cat.hpp"
-# include "WrongCat.hpp"
+#include "Cat.hpp"
+#include "Dog.hpp"
 
 int main()
 {
-    Animal *animal[2];
+	std::cout << "---------------------------------" << std::endl;
+	const Animal* a = new Dog();
+	const Animal* b = new Cat();
+	std::cout << "---------------------------------" << std::endl;
+	delete a;
+	delete b;
+	std::cout << "---------------------------------" << std::endl;
 
-    for (size_t i = 0; i < 2; i++){
-        if(i%2){
-            animal[i] = new Dog();
-        } else {
-            animal[i] = new Cat();
-        }
-    }
-    // for (size_t i = 0; i < 2; i++){
-    //     animal[i]->makeSound();
-    // }
-    for (size_t i = 0; i < 2; i++){
-        delete animal[i];
-    }
+	Animal *animals[6];
+
+	for (int i = 0; i < 3; i++) {
+		animals[i] = new Cat();
+	}
+	std::cout << "---------------------------------" << std::endl;
+	for (int i = 3; i < 6; i++) {
+		animals[i] = new Dog();
+	}
+
+	std::cout << "---------------------------------" << std::endl;
+	for (int i = 0; i < 6; i++) {
+		std::cout << animals[i]->getType() << " says ";
+		animals[i]->makeSound();
+	}
+	std::cout << "---------------------------------" << std::endl;
+
+	for (int i = 0; i < 6; i++) {
+		delete animals[i];
+	}
+
+	// std::cout << "----------Deep copy test----------" << std::endl;
+
+	// Dog basic;
+	// {
+	// 	Dog tmp = basic;
+	// }
+	// basic.getBrain()->printIdeas();
+
+	// std::cout << "---------------------------------" << std::endl;
+	return 0;
 }
-
-// int main()
-// {
-//     const Animal* j = new Dog();
-//     const Animal* i = new Cat();
-//     delete j;//should not create a leak
-//     delete i;
-//     return 0;
-// }
