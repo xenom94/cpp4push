@@ -3,36 +3,35 @@
 
 int main()
 {
-	std::cout << "---------------------------------" << std::endl;
+	std::cout << "----CONSTRUCTORS CALL---" << std::endl;
 	const AAnimal* a = new Dog();
 	const AAnimal* b = new Cat();
-	std::cout << "---------------------------------" << std::endl;
+	std::cout << "---DESTRUCTORS CALL---" << std::endl;
 	delete a;
 	delete b;
-	std::cout << "---------------------------------" << std::endl;
+	std::cout << "-----CONSTRUCTORS CALL FOR CAT-----" << std::endl;
 
-	AAnimal *animals[6];
+	AAnimal *animals[4];
 
-	for (int i = 0; i < 3; i++) {
+	for (int i = 0; i < 2; i++) {
 		animals[i] = new Cat();
 	}
-	std::cout << "---------------------------------" << std::endl;
-	for (int i = 3; i < 6; i++) {
+	std::cout << "-----CONSTRUCTORS CALL FOR DOG-----" << std::endl;
+	for (int i = 2; i < 4; i++) {
 		animals[i] = new Dog();
 	}
 
-	std::cout << "---------------------------------" << std::endl;
-	for (int i = 0; i < 6; i++) {
+	std::cout << "----PROPER SOUND FOR EACH ANIMAL----" << std::endl;
+	for (int i = 0; i < 4; i++) {
 		std::cout << animals[i]->getType() << " says ";
 		animals[i]->makeSound(); 
 	}
-	std::cout << "---------------------------------" << std::endl;
+	std::cout << "---DESTRUCTORS CALL---" << std::endl;
 
-	for (int i = 0; i < 6; i++) {
+	for (int i = 0; i < 4; i++) {
 		delete animals[i];
 	}
 
-	std::cout << "---------------------------------" << std::endl;
 
 	return 0;
 }

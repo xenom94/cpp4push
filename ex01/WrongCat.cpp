@@ -24,5 +24,5 @@ std::string WrongCat::getType() const {
 }
 
 void WrongCat::makeSound() const {
-    std::cout << "Meow!" << std::endl;
+    std::cout << "Meow meow!" << std::endl;
 }
